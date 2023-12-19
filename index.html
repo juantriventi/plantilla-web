@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <link rel="stylesheet" href="styles.css">
+    <!--Swiffy Slider-->
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class="hero-container">
+        <div class="text">
+          <h1>Tu Texto Aquí</h1>
+          <p>Descripción o más información sobre tu contenido.</p>
+          <button class="hero-button" id="explorarBtn">Explorar</button>
+        </div>
+        <div class="illustration">
+          <!-- Agrega tu ilustración aquí -->
+        </div>
+      </div>
+    <div class="grid-container">
+        <div class="grid-item" id="grid-item-1"></div>
+        <div class="grid-item" id="grid-item-2"></div>
+        <div class="grid-item" id="grid-item-3"></div>
+      </div>
+      <!-- Contenido después del grid-container -->
+      <div class="after-grid-container">
+
+          <!--Section one-->
+          <div class="section-one grid-container">
+              <div class="content-container">
+                <div class="text-section-one ">
+                  <h2>Texto a la Izquierda</h2>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum numquam provident saepe? Consequatur rem corporis quos, ducimus facilis libero voluptate.</p>
+                </div>
+                <div class="card-section-one grid-item" id="#explorar">
+                  <!-- Contenido del card aquí -->
+                </div>
+              </div>
+            </div>
+
+            <!--Section two-->
+            <div class="section-two grid-container">
+            <div class="content-container">
+                <div class="card-section-two grid-item">
+                        <!-- Contenido del card aquí -->
+                  </div>
+                  <div class="text-section-two">
+                     <h2>Texto a la Derecha</h2>
+                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum numquam provident saepe? Consequatur rem corporis quos, ducimus facilis libero voluptate.</p>
+                  </div>
+                </div>
+           </div>
+
+           <!--Carrusel usando libreria Swiffy Slider-->
+           <h2 class="carrusel-title">Sector del carrusel</h2>
+           <p class="carrusel-lead">imagenes con un scroll de swiffy slider</p>
+           <div id="slider" class="swiffy-slider slider-indicators-outside slider-item-show2 slider-item-ratio-32x9 slider-nav-square slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-autoplay" data-slider-nav-autoplay-interval="5000">
+            <ul class="slider-container">
+                <li><img src="https://dummyimage.com/500x280/8396a3/fff" style="max-width: 100%;height: auto;"></li>
+                <li><img src="https://dummyimage.com/500x280/8396a3/fff" style="max-width: 100%;height: auto;"></li>
+                <li><img src="https://dummyimage.com/500x280/8396a3/fff" style="max-width: 100%;height: auto;"></li>
+                <li><img src="https://dummyimage.com/500x280/8396a3/fff" style="max-width: 100%;height: auto;"></li>
+            </ul>
+        
+            <button type="button" class="slider-nav"></button>
+            <button type="button" class="slider-nav slider-nav-next"></button>
+        
+            <div class="slider-indicators">
+                <button class="active"></button>
+                <button></button>
+                <button></button>
+            </div>
+        </div>
+
+        <!-- Form Newsletter -->
+        <h2 class="text-newsletter">Sumate a nuestra cadena de emails</h2>
+        <form action="/action_page.php" class="center-form">
+          <div class="form-container">
+            <input type="text" placeholder="Ingresa tu correo electronico" name="mail" required>
+            <input type="submit" value="Subscribe">
+          </div>
+        </form>
+      </div>
+      <script>
+        /*Efecto de grid y section 1 y 2*/
+        document.addEventListener('DOMContentLoaded', function () {
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleVisibility() {
+            gridItems.forEach((item) => {
+            if (isInViewport(item) && !item.classList.contains('animated')) {
+                item.classList.add('in-viewport', 'animated');
+            }
+            });
+        }
+
+        window.addEventListener('scroll', handleVisibility);
+        handleVisibility();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const explorarBtn = document.getElementById('explorarBtn');
+
+        explorarBtn.addEventListener('click', function () {
+        // Obtenemos la altura de la ventana visible (viewport) en unidades vh
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        // Hacemos un desplazamiento suave hacia abajo
+        window.scrollBy({
+          top: viewportHeight,
+          behavior: 'smooth'
+        });
+    });
+});
+      /*Efecto del slider para aparecerse*/
+      document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.querySelectorAll('#slider');
+
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleVisibility() {
+          slider.forEach((item) => {
+            if (isInViewport(item) && !item.classList.contains('animated')) {
+                item.classList.add('in-viewport', 'animated');
+            }
+            });
+        }
+
+        window.addEventListener('scroll', handleVisibility);
+        handleVisibility();
+        });
+
+  </script>
+      
+</body>
+</html>
