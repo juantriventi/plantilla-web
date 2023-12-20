@@ -302,7 +302,7 @@
       gap: 16px;
       padding: 16px;
       overflow: hidden;
-      margin: 0px 500px;
+      margin: 0px 450px;
     }
 
     /*SECTION-ONE*/
@@ -317,7 +317,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      max-width: 1000px;
+      max-width: 1100px;
     }
 
     /*SECTION-TWO*/
